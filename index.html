@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Name Printer</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container mt-4">
+      <h1 class="display-4 text-center">
+        Name<span class="text-primary">Printer</span>
+      </h1>
+      <form action="" class="name-printer">
+        <div class="form-group">
+          <label for="name">Enter name(s) to print!</label>
+          <input
+            type="text"
+            name=""
+            id="name"
+            class="form-control"
+            placeholder="What's your name"
+          />
+        </div>
+
+        <input
+          type="submit"
+          value="Print Name"
+          class="btn btn-primary btn-block mt-2"
+        />
+      </form>
+
+      <table class="table table-striped mt-5">
+        <thead>
+          <tr>
+            <th class="text-primary">Output</th>
+            <th class="text-primary">Remove</th>
+          </tr>
+        </thead>
+        <tbody id="name-list"></tbody>
+      </table>
+    </div>
+  </body>
+
+  <script>
+    const namePrinter = document.querySelector(".name-printer");
+
+    namePrinter.addEventListener("submit", e => {
+      e.preventDefault();
+      const nameList = document.querySelector("#name-list");
+      const name = document.querySelector("#name").value;
+
+      //Add name functionality that prints my real name if no name is specified
+      if (name == "") {
+        nameList.innerHTML += `<tr> <td>My real name is Chibuzor</td> <td class= "btn btn-outline-danger btn-sm removeName" title="Click to remove">X</td> `;
+      } else {
+        nameList.innerHTML += `<tr><td>Your name is ${name} </td> <td class= "btn btn-outline-danger btn-sm removeName" title="Click to remove" >X</td></tr>`;
+      }
+
+      const removeName = document.querySelectorAll("table .removeName");
+
+      //Remove name functionalities that removes any name the user wishes
+      removeName.forEach(name => {
+        name.addEventListener("click", e => {
+          rmvname = e.target;
+          rmvname.parentNode.parentNode.removeChild(rmvname.parentElement);
+        });
+      });
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+</html>
